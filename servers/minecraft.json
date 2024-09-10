@@ -1,0 +1,10 @@
+{
+    "version": "1.0",
+    "onspawn": "Minecraft Server started. Connection details: \n IP: game.justus-tech.cloud \n Passwort: fhg1331",
+    "install": "wget https://minecraft.azureedge.net/bin-win/bedrock-server-1.20.81.01.zip",
+    "uninstall": "",
+    "start": "start %cd%\\servers\\minecraft\\bedrock_server.exe",
+    "stop": "",
+    "executable": "bedrock_server.exe",
+    "status":"none"
+}

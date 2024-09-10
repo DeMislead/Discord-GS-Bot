@@ -1,2 +1,3 @@
-# Discord-GS-Bot
-Bot with basic start/stop functionalities for Gameservers
+# dc-servermanager
+
+Starts and Stops game servers via Discord API
