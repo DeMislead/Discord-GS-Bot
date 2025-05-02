@@ -5,7 +5,7 @@ import server
 
 TOKEN = Path('.access').read_text()
 intents = discord.Intents.default()
-intents.message_content = True
+intents.message_content = True # NOQA
 
 client = commands.Bot(command_prefix='$', intents=intents)
 
