@@ -3,7 +3,8 @@ import json
 from sys import stdout
 from subprocess import call, check_output
 
-def load_server_config(server_name):
+
+def load_server_config(server_name: str):
     """
     Load the server configuration from the JSON file.
     
@@ -12,15 +13,15 @@ def load_server_config(server_name):
     """
     # Construct the path to the server's JSON file
     config_path = os.path.join('servers', (server_name + '.json'))
-    
+
     if not os.path.exists(config_path):
         raise FileNotFoundError(f"No such file or directory '{config_path}'")
-    
+
     with open(config_path, 'r') as file:
         return json.load(file)
-        
 
-def start_application(server_name):
+
+def start_application(server_name: str) -> None:
     """
     Start the application using the server configuration.
     
@@ -31,7 +32,8 @@ def start_application(server_name):
     print(f"Starting {command}")
     call(command, shell=True)
 
-def stop_application(server_name):
+
+def stop_application(server_name: str) -> None:
     """
     Stop the application using the server configuration.
     
@@ -42,7 +44,8 @@ def stop_application(server_name):
     print(f"Stopping {command}")
     call(command, shell=True)
 
-def check_status(server_name):
+
+def check_status(server_name: str) -> str:
     """
     Check the status of the application using the server configuration.
     
@@ -54,7 +57,8 @@ def check_status(server_name):
     print(status_message)
     return status_message
 
-def onstarted(server_name):
+
+def onstarted(server_name: str) -> str:
     """
     Check the status of the application using the server configuration.
     
@@ -66,7 +70,8 @@ def onstarted(server_name):
     print(status_message)
     return status_message
 
-def isProcessRunning (processName):
+
+def isProcessRunning(processName: str) -> str:
     cmd = 'TASKLIST', '/FI', 'IMAGENAME eq %s' % processName
     output = check_output(cmd).decode(stdout.encoding)
     running = output.strip().split('\r\n')[-1].lower().startswith(processName.lower())
