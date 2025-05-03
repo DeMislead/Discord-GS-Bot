@@ -1,3 +1,7 @@
+"""
+Server management module.
+"""
+
 import json
 import os
 from subprocess import call, check_output
@@ -79,6 +83,6 @@ def is_process_running(process_name: str) -> str:
     """
     cmd = 'TASKLIST', '/FI', f'IMAGENAME eq {process_name}'
     output = check_output(cmd).decode(stdout.encoding)
-    running = output.strip().split('\r\n')[-1].lower().startswith(process_name.lower())
+    running = output.strip().rsplit('\r\n', maxsplit=1)[-1].lower().startswith(process_name.lower())
 
     return 'Server is up and running' if running else 'Server is currently not running.'

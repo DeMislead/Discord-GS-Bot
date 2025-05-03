@@ -1,3 +1,6 @@
+"""
+Main file.
+"""
 import os
 
 from dotenv import load_dotenv
@@ -6,6 +9,11 @@ from Bot import discordBot, commands
 
 
 def main():
+    """
+    Main entry point for the application.
+
+    :return: None
+    """
     load_dotenv()
     token = os.getenv('DISCORD_TOKEN')
 
