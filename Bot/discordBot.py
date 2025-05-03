@@ -1,4 +1,5 @@
 ﻿import discord
+from discord import Message
 from discord.ext import commands
 
 
@@ -16,7 +17,7 @@ class ServerBot(commands.Bot):
         """
         print(f"{self.user.name} is ready")
 
-    async def on_message(self, message) -> None:
+    async def on_message(self, message: Message, /) -> None:
         """
         Handles incoming messages and processes commands if applicable.
 
