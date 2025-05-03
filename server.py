@@ -1,7 +1,7 @@
-import os
 import json
-from sys import stdout
+import os
 from subprocess import call, check_output
+from sys import stdout
 
 
 def load_server_config(server_name: str):
@@ -17,7 +17,7 @@ def load_server_config(server_name: str):
     if not os.path.exists(config_path):
         raise FileNotFoundError(f"No such file or directory '{config_path}'")
 
-    with open(config_path, 'r') as file:
+    with open(config_path, 'r', encoding='UTF-8') as file:
         return json.load(file)
 
 
@@ -53,12 +53,12 @@ def check_status(server_name: str) -> str:
     :return: Status message.
     """
     config = load_server_config(server_name)
-    status_message = isProcessRunning(config['executable'])
+    status_message = is_process_running(config['executable'])
     print(status_message)
     return status_message
 
 
-def onstarted(server_name: str) -> str:
+def on_started(server_name: str) -> str:
     """
     Check the status of the application using the server configuration.
     
@@ -71,9 +71,14 @@ def onstarted(server_name: str) -> str:
     return status_message
 
 
-def isProcessRunning(processName: str) -> str:
-    cmd = 'TASKLIST', '/FI', 'IMAGENAME eq %s' % processName
+def is_process_running(process_name: str) -> str:
+    """
+    Check whether a process with the given name is running.
+    :param process_name: Name of the process.
+    :return: Status message.
+    """
+    cmd = 'TASKLIST', '/FI', f'IMAGENAME eq {process_name}'
     output = check_output(cmd).decode(stdout.encoding)
-    running = output.strip().split('\r\n')[-1].lower().startswith(processName.lower())
+    running = output.strip().split('\r\n')[-1].lower().startswith(process_name.lower())
 
     return 'Server is up and running' if running else 'Server is currently not running.'

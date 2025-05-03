@@ -20,7 +20,7 @@ def __init__(client: ServerBot) -> None:
     async def start(ctx: Context, args) -> None:
         try:
             server.start_application(args)
-            await ctx.channel.send(server.onstarted(args))
+            await ctx.channel.send(server.on_started(args))
         except FileNotFoundError:
             await ctx.channel.send("There is no such server")
 
