@@ -1,0 +1,15 @@
+[MAIN]
+
+suggestion-mode=yes
+
+[BASIC]
+
+module-naming-style=any
+
+[FORMAT]
+
+max-line-length=150
+
+[MESSAGES CONTROL]
+
+disable=missing-docstring
